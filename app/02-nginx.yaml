@@ -11,14 +11,14 @@ spec:
     metadata:
       labels:
         app: nginx
-      # Kubernetes annotations to “hint” to the Beats how the new deployment should be monitored
       annotations: 
+        co.elastic.logs/enabled: "true"
         co.elastic.logs/module: nginx
         co.elastic.logs/fileset.stdout: access
-        co.elastic.logs/fileset.stderr: error        
+        co.elastic.logs/fileset.stderr: error   
+        co.elastic.metrics/enabled: "true"     
         co.elastic.metrics/module: nginx
-        co.elastic.metrics/period: 10s
-        co.elastic.metrics/metricsets: stubstatus # Need to make sure stub_status is enabled on nginx
+        co.elastic.metrics/metricsets: stubstatus 
         co.elastic.metrics/hosts: "${data.host}:80"
     spec:
       containers:
