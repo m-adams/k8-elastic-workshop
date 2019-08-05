@@ -22,7 +22,7 @@ data:
       hosts: ['https://${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
       username: ${ELASTICSEARCH_USERNAME}
       password: ${ELASTICSEARCH_PASSWORD}
-      ssl.certificate_authorities: ["/mnt/ca/ca.pem"]
+      ssl.certificate_authorities: ["/mnt/ca/tls.crt"]
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -97,7 +97,7 @@ spec:
         ]
         env:
         - name: ELASTICSEARCH_HOST
-          value: quickstart-es
+          value: quickstart-es-http
         - name: ELASTICSEARCH_PORT
           value: "9200"
         - name: ELASTICSEARCH_USERNAME
@@ -105,7 +105,7 @@ spec:
         - name: ELASTICSEARCH_PASSWORD
           valueFrom:
               secretKeyRef:
-                name: quickstart-elastic-user
+                name: quickstart-es-elastic-user
                 key: elastic
         - name: NODE_NAME
           valueFrom:
@@ -162,7 +162,7 @@ spec:
           type: DirectoryOrCreate
       - name: ca
         secret:
-          secretName: quickstart-es-ca
+          secretName: quickstart-es-http-ca-internal
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
