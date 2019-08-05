@@ -11,7 +11,7 @@ spec:
     metadata:
       labels:
         app: beats-demo
-    annotations: 
+      annotations: 
         co.elastic.logs/enabled: "true"
         co.elastic.logs/module: nginx
         co.elastic.logs/fileset.stdout: access
