@@ -34,6 +34,15 @@ spec:
     metadata:
       labels:
         app: mysql
+      annotations: 
+        co.elastic.logs/enabled: "true"
+        co.elastic.logs/module: mysql
+        co.elastic.logs/fileset.stdout: slowlog
+        co.elastic.logs/fileset.stderr: error   
+        co.elastic.metrics/enabled: "true"     
+        co.elastic.metrics/module: mysql
+        co.elastic.metrics/metricsets: status 
+        co.elastic.metrics/hosts: "root:${MYSQL_ROOT_PASSWORD}@tcp(127.0.0.1:3306)/"  
     spec:
       containers:
       - image: mysql:5.6
