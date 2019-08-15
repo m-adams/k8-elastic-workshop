@@ -61,3 +61,21 @@ spec:
             secretKeyRef:
               name: workshop-app
               key: MYSQL_PASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: workshop-app
+  labels:
+    app: workshop-app
+spec:
+  type: NodePort
+  # loadBalancerIP: 35.184.104.118
+  # Avoid NAT to get source IP:
+  externalTrafficPolicy: Local
+  ports:
+  - port: 80
+    targetPort: app-port
+  selector:
+    app: workshop-app
+
