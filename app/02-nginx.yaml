@@ -50,7 +50,7 @@ data:
 
         # Configuration containing list of application servers
         upstream uwsgicluster {
-            server beats-demo:80;
+            server workshop-app:80;
         }
 
         # Configuration for Nginx
