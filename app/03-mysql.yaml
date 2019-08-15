@@ -46,12 +46,12 @@ spec:
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: beats-demo
+              name: workshop-app
               key: MYSQL_PASSWORD
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: beats-demo
+              name: workshop-app
               key: MYSQL_ROOT_PASSWORD
         ports:
         - containerPort: 3306
