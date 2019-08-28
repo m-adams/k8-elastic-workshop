@@ -38,7 +38,6 @@ data:
         - state_pod
         - state_container
         - event
-        - scheduler
       period: 10s
       host: ${NODE_NAME}
       hosts: ["kube-state-metrics.kube-system:8080"]
