@@ -12,10 +12,7 @@ spec:
       labels:
         app: workshop-app
       #annotations: 
-      #  co.elastic.logs/enabled: "true"
-      #  co.elastic.logs/module: nginx
-      #  co.elastic.logs/fileset.stdout: access
-      #  co.elastic.logs/fileset.stderr: error  
+      #  co.elastic.logs/enabled: "true" 
     spec:
       containers:
       - image: adamquan/beats-demo-app
