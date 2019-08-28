@@ -10,4 +10,9 @@ spec:
       node.master: true
       node.data: true
       node.ingest: true
+  #- nodeCount: 3
+  #  config: 
+  #    node.master: false
+  #    node.data: true
+  #    node.ingest: true
 
