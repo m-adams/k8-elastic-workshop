@@ -18,6 +18,14 @@ data:
           host: ${NODE_NAME}
           hints.enabled: true
 
+    setup.kibana.host: 'https://${KIBANA_HOST}:5601'                                                                                                                                                                    
+    setup.dashboards.enabled: true                                                                                                                                                                                      
+    setup.kibana.username: ${ELASTICSEARCH_USERNAME}                                                                                                                                                                    
+    setup.kibana.password: ${ELASTICSEARCH_PASSWORD}                                                                                                                                                                    
+    setup.kibana.ssl.enabled: true                                                                                                                                                                                      
+    setup.kibana.ssl.certificate_authorities: ["/mnt/ca/tls.crt"]                                                                                                                                                       
+    setup.kibana.ssl.verification_mode: none      
+
     output.elasticsearch:
       hosts: ['https://${ELASTICSEARCH_HOST:elasticsearch}:${ELASTICSEARCH_PORT:9200}']
       username: ${ELASTICSEARCH_USERNAME}
@@ -96,6 +104,8 @@ spec:
           "-system.hostfs=/hostfs",
         ]
         env:
+        - name: KIBANA_HOST                                                                                                                                                                                             
+          value: quickstart-kb-http  
         - name: ELASTICSEARCH_HOST
           value: quickstart-es-http
         - name: ELASTICSEARCH_PORT
