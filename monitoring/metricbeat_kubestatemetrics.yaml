@@ -37,8 +37,8 @@ data:
         - state_replicaset
         - state_pod
         - state_container
-        # Uncomment this to get k8s events:
-        #- event
+        - event
+        - scheduler
       period: 10s
       host: ${NODE_NAME}
       hosts: ["kube-state-metrics.kube-system:8080"]
