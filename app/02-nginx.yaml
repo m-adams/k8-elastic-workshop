@@ -23,13 +23,10 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: adamquan/beats-demo-nginx
-        # Assign a name to the port so that we can refer to it by name in the service.
-        # Named ports enables us to change the port number later without having to 
-        # change the service spec
+        image: nginx:1.13.6
         ports:
         - name: nginx-port 
-          containerPort: 80
+          containerPort: 8081
         volumeMounts:
         - name: config
           mountPath: /etc/nginx/nginx.conf
@@ -53,55 +50,22 @@ data:
     }
 
     http {
-        include    /etc/nginx/mime.types;
-        sendfile on;
-        client_max_body_size 1M;
+      include    /etc/nginx/mime.types;
+      sendfile on;
+      client_max_body_size 1M;
+      root /usr/share/nginx/html/;
+      index /index.html;
 
-        # Configuration containing list of application servers
-        upstream uwsgicluster {
-            server workshop-app:80;
+      server {
+        listen 8081 default_server;
+
+        location / {
+           proxy_pass http://workshop-app-frontend:3000;
+           proxy_set_header Host            $host;
+           proxy_set_header X-Forwarded-For $remote_addr;
         }
 
-        # Configuration for Nginx
-        server {
-            # error_log /var/log/nginx/error.log debug;
-
-            # Running port
-            listen 80;
-            # server_name  localhost;
-
-            # Serve static files
-            location /static/ {
-              root /usr/share/nginx/html/;
-              autoindex off;
-            }
-
-            # Proxy connections to application server
-            location / {
-                include uwsgi_params;
-                uwsgi_pass uwsgicluster;
-
-                uwsgi_param Host $host;
-                uwsgi_param X-Real-IP $remote_addr;
-                uwsgi_param X-Forwarded-For $proxy_add_x_forwarded_for;
-                uwsgi_param X-Forwarded-Proto $http_x_forwarded_proto;
-            }
-
-            #error_page  404              /404.html;
-
-            # redirect server error pages to the static page /50x.html
-            #
-            error_page   500 502 503 504  /50x.html;
-            location = /50x.html {
-                root   /usr/share/nginx/html;
-            }
-
-            location /server-status {
-              stub_status on;
-              access_log   off;
-              allow all;
-            }
-        }
+      }
     }
 ---
 apiVersion: v1
@@ -113,7 +77,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 8081
+      targetPort: 8081
   selector:
     app: nginx

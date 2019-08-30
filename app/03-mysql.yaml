@@ -49,9 +49,9 @@ spec:
         name: mysql
         env:
         - name: MYSQL_DATABASE
-          value: beats_demo_app
+          value: workshop-app
         - name: MYSQL_USER
-          value: beats
+          value: workshop
         - name: MYSQL_PASSWORD
           valueFrom:
             secretKeyRef:
