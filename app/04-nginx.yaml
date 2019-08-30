@@ -44,6 +44,7 @@ metadata:
 data:
   nginx.conf: |-
     worker_processes 1;
+    error_log /dev/stdout error;
 
     events {
         worker_connections 1024;
@@ -55,6 +56,7 @@ data:
       client_max_body_size 1M;
       root /usr/share/nginx/html/;
       index /index.html;
+      access_log /dev/stdout;
 
       server {
         listen 8081 default_server;
@@ -63,6 +65,7 @@ data:
            proxy_pass http://workshop-app-frontend:3000;
            proxy_set_header Host            $host;
            proxy_set_header X-Forwarded-For $remote_addr;
+           proxy_set_header X-Real-IP $remote_addr;
         }
 
       }
