@@ -44,7 +44,7 @@ metadata:
 data:
   nginx.conf: |-
     worker_processes 1;
-    error_log /dev/stdout error;
+    error_log /dev/stdout;
 
     events {
         worker_connections 1024;
