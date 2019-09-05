@@ -1,0 +1,47 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:8081",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "concurrently": "^4.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-favicon": "^2.0.1",
+    "express-winston": "^3.3.0",
+    "moxios": "^0.4.0",
+    "react": "^16.0.0",
+    "react-bootstrap": "^0.31.2",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "react-scripts": "^2.1.3",
+    "redux": "^3.7.2",
+    "redux-devtools": "^3.4.0",
+    "redux-modal": "^2.0.1",
+    "redux-thunk": "^2.3.0",
+    "request-promise": "^4.2.4",
+    "winston": "^3.2.1"
+  },
+  "scripts": {
+    "start": "concurrently \"node server\" \"react-scripts start\"",
+    "build": "react-scripts build"
+  },
+  "devDependencies": {
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "enzyme-to-json": "^3.3.4",
+    "fetch-mock": "^7.2.5",
+    "firebase-tools": "^6.2.2",
+    "node-sass": "^4.12.0",
+    "nodemon": "^1.18.6",
+    "prop-types": "^15.6.2",
+    "react-test-renderer": "^16.6.3"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
