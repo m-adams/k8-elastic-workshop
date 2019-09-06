@@ -7,3 +7,7 @@ spec:
   nodeCount: 1
   elasticsearchRef:
     name: quickstart
+  http:
+    service:
+      spec:
+        type: LoadBalancer
