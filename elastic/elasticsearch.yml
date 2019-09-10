@@ -5,14 +5,24 @@ metadata:
 spec:
   version: 7.2.0
   nodes:
-  - nodeCount: 1
+  - nodeCount: 1 
     config:
       node.master: true
       node.data: true
       node.ingest: true
+    #podTemplate:                                                                                                                                
+    #  metadata:                                                                                                                                 
+    #    annotations:                                                                                                                            
+    #      co.elastic.logs/enabled: "true"                                                                                                       
+    #      co.elastic.logs/module: elasticsearch   
   #- nodeCount: 3
   #  config: 
   #    node.master: false
   #    node.data: true
   #    node.ingest: true
+    #podTemplate:                                                                                                                                
+    #  metadata:                                                                                                                                 
+    #    annotations:                                                                                                                            
+    #      co.elastic.logs/enabled: "true"                                                                                                       
+    #      co.elastic.logs/module: elasticsearch   
 
