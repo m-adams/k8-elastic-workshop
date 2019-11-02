@@ -25,7 +25,7 @@ spec:
       - name: nginx
         image: nginx:1.13.6
         ports:
-        - name: nginx-port 
+        - name: nginx-port
           containerPort: 8081
         volumeMounts:
         - name: config
@@ -78,9 +78,10 @@ metadata:
   labels:
     app: nginx
 spec:
-  type: NodePort
+  type: LoadBalancer
+  externalTrafficPolicy: Cluster
   ports:
-    - port: 8081
-      targetPort: 8081
+  - port: 8081
+    targetPort: 8081
   selector:
     app: nginx
