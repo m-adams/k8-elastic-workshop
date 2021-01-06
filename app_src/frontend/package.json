@@ -4,7 +4,7 @@
   "private": true,
   "proxy": "http://localhost:8081",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "concurrently": "^4.0.1",
     "cors": "^2.8.5",
     "express": "^4.16.4",
